@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                           http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
+
+    <!-- 
+        학사 DB용 DataSource 설정 (HAKSA.JWXE 기반)
+        JiniworksDataSourceFactory를 사용하여 DB Alias 기반으로 생성합니다.
+    -->
+    <bean id="haksaDataSourceFactory" class="md.database.datasource.JiniworksDataSourceFactory">
+        <property name="alias" value="HAKSA" />
+    </bean>
+
+    <bean id="dataSource-haksa" class="md.database.datasource.DataSource">
+        <property name="dataSourceFactory" ref="haksaDataSourceFactory" />
+    </bean>
+
+    <alias name="dataSource-haksa" alias="haksa.dataSource" />
+
+    <!-- 
+        학사 DB용 SqlSessionFactory (Refreshable 기능 포함)
+        Mapper XML 경로: webapp/_custom/u1/properties/mybatis/oracle/*.xml
+    -->
+    <bean id="sqlSessionHaksa" class="com.andwise.jw.mybatis.RefreshableSqlSessionFactoryBean">
+        <property name="resourcePathResolover" ref="resourcePathResolover" />
+        <property name="dataSource" ref="haksa.dataSource" />
+        <property name="mapperLocations">
+            <list>
+                <value>/_custom/${customId}/properties/mybatis/oracle/*.xml</value>
+                <value>/_custom/${customId}/properties/mybatis/haksa/*.xml</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 
+        학사 DB용 Mapper 스캔
+        스캔 대상 패키지: custom.mapper.haksa
+        명시적으로 sqlSessionHaksa를 사용하도록 설정합니다.
+    -->
+    <mybatis:scan base-package="custom.mapper.haksa" 
+                  annotation="org.egovframe.rte.psl.dataaccess.mapper.Mapper" 
+                  factory-ref="sqlSessionHaksa" />
+
+</beans>

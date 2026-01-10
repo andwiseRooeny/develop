@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+    Namespace: HaksaMemberMapper 인터페이스 매핑
+    DB: Oracle 11g
+    Reference: MyBatis_DBMS별_매퍼_분리_구조.md, member_integration_details.md
+-->
+<mapper namespace="com.andwise.jw.client.u1.custom.mapper.HaksaMemberMapper">
+
+    <!-- 
+        로그인 인증
+        함수: YTIS_SYSTEM.CHECK_EN_PASSWORD('아이디', '암호')
+        반환: YES / NO
+    -->
+    <select id="checkLogin" parameterType="map" resultType="string">
+        SELECT YTIS_SYSTEM.CHECK_EN_PASSWORD(#{id}, #{password}) 
+          FROM DUAL
+    </select>
+
+    <!-- 
+        회원 신상 정보 조회
+        뷰: YTIS_HAKSA.VIEW_GONET_V_YDUAUTH
+        컬럼: ID, NAME, SOSOKNAME, GBSINBUN
+    -->
+    <select id="selectMemberInfo" parameterType="map" resultType="map">
+        SELECT 
+            ID,
+            NAME,
+            SOSOKNAME,
+            GBSINBUN
+        FROM YTIS_HAKSA.VIEW_GONET_V_YDUAUTH
+        WHERE ID = #{id}
+    </select>
+
+</mapper>
