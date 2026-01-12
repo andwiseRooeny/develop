@@ -127,6 +127,8 @@ public class HaksaAppMapper extends AppMapper {
     public void setSqlSessionFactory(SqlSessionFactory sqlSession) {
     	super.setSqlSessionFactory(sqlSession);
     }
+    
+    // [중요] 개별 메서드는 구현하지 않고 부모의 selectOne/selectList 등을 직접 호출하여 사용함
 }
 ```
 

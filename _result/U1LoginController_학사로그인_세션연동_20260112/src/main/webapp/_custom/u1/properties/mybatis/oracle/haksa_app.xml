@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="custom.mapper.haksa.HaksaAppMapper">
+
+    <!-- [CRUD 표준] 공통 컬럼 정의로 재사용성 확보 -->
+    <sql id="haksaUserInfoColumns">
+        ID, NAME, SOSOKNAME, GBSINBUN
+    </sql>
+
+    <!-- 1. 학사 로그인 패스워드 검증 함수 호출 -->
+    <select id="checkHaksaPassword" parameterType="map" resultType="string">
+        <if test="@Ognl@isNotEmpty(id) and @Ognl@isNotEmpty(pw)">
+            SELECT YTIS_SYSTEM.CHECK_EN_PASSWORD(#{id}, #{pw}) FROM DUAL
+        </if>
+    </select>
+
+    <!-- 2. 학사 회원 신상 정보 조회 (View) -->
+    <select id="selectHaksaUserInfo" parameterType="string" resultType="camel">
+        SELECT 
+            <include refid="haksaUserInfoColumns"/>
+        FROM YTIS_HAKSA.VIEW_GONET_V_YDUAUTH
+        <where>
+            <if test="@Ognl@isNotEmpty(id)">
+                AND ID = #{id}
+            </if>
+        </where>
+    </select>
+
+    <!-- 3. 학사 DB 연결 테스트 (Oracle 기준) -->
+    <select id="selectHaksaNow" resultType="string">
+        SELECT TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') FROM DUAL
+    </select>
+
+</mapper>

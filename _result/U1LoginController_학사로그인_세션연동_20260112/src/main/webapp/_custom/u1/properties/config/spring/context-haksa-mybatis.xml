@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+  http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- 학사 전용 SqlSession (SqlSessionFactory) -->
+	<bean id="haksaSqlSession" class="com.andwise.jw.mybatis.RefreshableSqlSessionFactoryBean" >
+		<property name="resourcePathResolover" ref="resourcePathResolover" />
+		<property name="dataSource" ref="haksa.dataSource" />
+		<property name="mapperLocations">
+	           <list>
+	               <!-- 학사 DB는 Oracle이므로 경로를 oracle로 명시하여 FileNotFoundException(mysql 로딩 시도) 방지 -->
+	               <value>/_custom/${customId}/properties/mybatis/oracle/haksa_app.xml</value>
+	           </list>
+	     </property>
+	</bean>
+
+	<!-- 
+	  주의: HaksaAppMapper가 클래스 기반(extends AppMapper)으로 구현되었으므로 mybatis:scan은 사용하지 않습니다.
+	  해당 클래스는 @Repository 스캔을 통해 빈으로 등록되며, haksaSqlSession을 수동 주입받습니다.
+	-->
+
+</beans>
