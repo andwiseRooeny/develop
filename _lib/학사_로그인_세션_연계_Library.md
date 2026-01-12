@@ -8,6 +8,7 @@
   1. `HaksaAppMapper`를 통해 학사 DB의 인증 함수(`CHECK_EN_PASSWORD`) 결과 확인.
   2. 인증 성공 시, `authService.login(request, memberId)`를 호출하여 CMS 보안 세션을 강제 생성.
   3. 생성된 `LoginVO` 객체에 학사 상세 뷰(`VIEW_GONET_V_YDUAUTH`) 데이터를 직접 주입(Mapping).
+  4. **UCM Lite 연동 파라미터 가공**: 세션에 저장된 학번/신분 정보를 UCM Lite 규격(`userId`, `userClass`)에 맞게 사전 바인딩.
 
 **[핵심 코드 패턴]**:
 ```java
@@ -24,11 +25,16 @@ if ("YES".equals(haksaResult)) {
     LoginVO loginVO = loginResultVO.getLoginVO();
     loginVO.setMemberNm((String) haksaInfo.get("name"));
     // ... 신분 코드 변환 및 주입
+
+    // 4. UCM Lite 연동용 데이터 준비 (레퍼런스 03번 참조)
+    request.setAttribute("ucmUserId", memberId);
+    request.setAttribute("ucmUserClass", loginVO.getUserClass()); // S(학생), F(교직원)
 }
 ```
 
 ## 3. 관련 레퍼런스 (References)
 - [U1LoginController 통합 레퍼런스](../_ref/custom/01_U1LoginController_통합_레퍼런스.md)
+- [UCM Lite JSP 연동 구현 통합 레퍼런스](../_ref/custom/03_UCM_Lite_JSP_연동_구현_통합_레퍼런스.md)
 - [AppMapper 상속 및 멀티데이터소스 가이드](./AppMapper_상속_및_멀티데이터소스_연동_가이드_Library.md)
 
 ## 4. 회고 및 개선 (Retrospective)
