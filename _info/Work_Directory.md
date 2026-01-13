@@ -4,7 +4,7 @@
 
 ## 📁 주요 경로 일람
 
-### 1. 자바 구현 경로 (`java/custom`)
+### 1. 자바 구현 경로 (`client/u1/java/custom`)
 - **역할**: 프로젝트의 커스텀 비즈니스 로직(Controller, Service, Mapper 등)이 구현되는 핵심 공간입니다.
 - **주요 하위 구조**:
   - `app/web`: 컨트롤러 클래스

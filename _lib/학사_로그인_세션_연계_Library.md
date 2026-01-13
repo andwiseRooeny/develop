@@ -33,8 +33,8 @@ if ("YES".equals(haksaResult)) {
 ```
 
 ## 3. 관련 레퍼런스 (References)
-- [U1LoginController 통합 레퍼런스](../_ref/custom/01_U1LoginController_통합_레퍼런스.md)
-- [UCM Lite JSP 연동 구현 통합 레퍼런스](../_ref/custom/03_UCM_Lite_JSP_연동_구현_통합_레퍼런스.md)
+- [U1LoginController 통합 레퍼런스](../_ref/custom/application/app-controller_U1LoginController_레퍼런스.md)
+- [UCM Lite JSP 연동 구현 통합 레퍼런스](../_ref/custom/infrastructure/infra-integration_UCM_Lite_JSP_구현_레퍼런스.md)
 - [AppMapper 상속 및 멀티데이터소스 가이드](./AppMapper_상속_및_멀티데이터소스_연동_가이드_Library.md)
 
 ## 4. 회고 및 개선 (Retrospective)

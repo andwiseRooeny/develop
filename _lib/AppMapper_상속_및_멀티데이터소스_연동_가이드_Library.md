@@ -50,13 +50,13 @@ EgovMap info = haksaAppMapper.selectOne("custom.mapper.haksa.HaksaAppMapper.sele
 ```
 
 ### 4단계: XML 매퍼 및 SQL 작성 (`haksa_app.xml`)
-[MyBatis CRUD 표준 레퍼런스](../_ref/common/01_MyBatis_CRUD_표준_통합_레퍼런스.md)를 준수하여 작성합니다.
+[MyBatis CRUD 표준 레퍼런스](../_ref/common/persistence/pers-query_MyBatis_CRUD_표준_레퍼런스.md)를 준수하여 작성합니다.
 - `sql` 조각을 통한 컬럼 관리
 - `camel` (EgovMap) 별칭 사용
 
 ## 3. 관련 레퍼런스 (References)
-- [AppMapper 상속 및 멀티데이터소스 통합 레퍼런스](../_ref/common/AppMapper_상속_및_멀티데이터소스_통합_레퍼런스.md)
-- [MyBatis CRUD 표준 통합 레퍼런스](../_ref/common/01_MyBatis_CRUD_표준_통합_레퍼런스.md)
+- [AppMapper 상속 및 멀티데이터소스 통합 레퍼런스](../_ref/common/persistence/pers-datasource_AppMapper_멀티데이터소스_레퍼런스.md)
+- [MyBatis CRUD 표준 통합 레퍼런스](../_ref/common/persistence/pers-query_MyBatis_CRUD_표준_레퍼런스.md)
 
 ## 4. 회고 및 개선 (Retrospective)
 - **성과**: 명시적 세션 주입을 통해 상속 구조에서도 멀티 DB를 안정적으로 제어할 수 있게 됨.

@@ -11,7 +11,7 @@
 - **코드 패턴**: `AppMapper`를 상속받은 `HaksaAppMapper`에서 `@Resource(name = "sqlSessionHaksa")`를 통해 세션을 명시적으로 주입받아 사용.
 
 ## 3. 관련 레퍼런스 (References)
-- [Common/AppMapper_상속_및_멀티데이터소스_통합_레퍼런스](../_ref/common/AppMapper_%EC%83%81%EC%86%8D_%EB%B0%8F_%EB%A9%80%ED%8B%B0%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%86%8C%EC%8A%A4_%ED%86%B5%ED%95%A9_%EB%A0%88%ED%8D%BC%EB%9F%B0%EC%8A%A4.md)
+- [Common/AppMapper_상속_및_멀티데이터소스_통합_레퍼런스](../_ref/common/persistence/pers-datasource_AppMapper_멀티데이터소스_레퍼런스.md)
 
 ## 4. 회고 및 개선 (Retrospective)
 - 초기 계획에서 하드코딩된 설정을 사용하려 했으나, 사용자의 가이드를 통해 지니웍스 표준 팩토리 방식으로 전환하여 범용성을 확보함.

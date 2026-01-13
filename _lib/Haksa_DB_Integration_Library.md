@@ -10,10 +10,10 @@
 ## 2. Reference Library (참조 지식 모음)
 이 문제를 해결하기 위해 조합된 레퍼런스들입니다.
 
-- [Spring_MyBatis_Config_통합_레퍼런스.md](../_ref/Spring_MyBatis_Config_통합_레퍼런스.md) - (기존 데이터소스 구조가 `Globals.DbType`에 종속적임을 확인)
-- [MyBatis_DBMS별_매퍼_분리_구조.md](../_ref/MyBatis_DBMS별_매퍼_분리_구조.md) - (Oracle 전용 쿼리 파일(`haksa_member.xml`)을 `oracle/` 폴더에 위치시켜야 함을 확인)
-- [_Reference_For_Java_Dev.md](../_ref/_Reference_For_Java_Dev.md) - (커스텀 Mapper 인터페이스의 패키지 네이밍 규칙 준수)
-- [BoardMapper_통합_레퍼런스.md](../_ref/BoardMapper_통합_레퍼런스.md) - (전자정부 프레임워크 호환 `@Mapper` 어노테이션 규격 확인)
+- [Spring_MyBatis_Config_통합_레퍼런스.md](../_ref/common/persistence/pers-datasource_Spring_MyBatis_Config_레퍼런스.md) - (기존 데이터소스 구조가 `Globals.DbType`에 종속적임을 확인)
+- [MyBatis_DBMS별_매퍼_분리_구조.md](../_ref/common/persistence/pers-query_MyBatis_DBMS별_매퍼_레퍼런스.md) - (Oracle 전용 쿼리 파일(`haksa_member.xml`)을 `oracle/` 폴더에 위치시켜야 함을 확인)
+- [_Reference_For_Java_Dev.md](../_ref/common/infrastructure/infra-config_Java_Dev_Reference_레퍼런스.md) - (커스텀 Mapper 인터페이스의 패키지 네이밍 규칙 준수)
+- [BoardMapper_통합_레퍼런스.md](../_ref/common/persistence/pers-mapper_BoardMapper_레퍼런스.md) - (전자정부 프레임워크 호환 `@Mapper` 어노테이션 규격 확인)
 
 ## 3. Key Decision (의사결정 근거)
 - **멀티 데이터소스 전략**: 메인 DB 커넥션 풀을 공유하지 않고 별도로 구성했습니다. 이는 학사 DB 장애가 발생하더라도 메인 CMS 서비스는 영향받지 않도록 하는 **격리(Isolation) 효과**를 위해서입니다.
